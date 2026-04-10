@@ -1,0 +1,20 @@
+{
+  "appId": "com.guardianpath.app",
+  "appName": "SafeLy",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "StatusBar": {
+      "style": "Dark",
+      "backgroundColor": "#0A043C"
+    },
+    "SplashScreen": {
+      "launchAutoHide": true,
+      "backgroundColor": "#0A043C",
+      "androidSplashResourceName": "splash",
+      "showSpinner": false
+    }
+  }
+}
