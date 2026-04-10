@@ -6,51 +6,51 @@ const CONTACTS = [
   {
     categoryKey: "emergencyCat",
     items: [
-      { name: "Integrated Emergency (Police, Fire, Ambulance)", number: "112",   type: "call" },
-      { name: "Police",                      number: "100",           type: "call" },
-      { name: "National Ambulance Service",  number: "102",           type: "call" },
-      { name: "Fire Brigade",                number: "101",           type: "call" },
-      { name: "Road Accident Helpline",      number: "1073",          type: "call" },
-      { name: "Relief Commissioner / Disaster", number: "1070",       type: "call" },
+      { nameKey: "contactIntegrated", number: "112",   type: "call" },
+      { nameKey: "contactPolice",                      number: "100",           type: "call" },
+      { nameKey: "contactAmbulance",  number: "102",           type: "call" },
+      { nameKey: "contactFire",                number: "101",           type: "call" },
+      { nameKey: "contactRoadAccident",      number: "1073",          type: "call" },
+      { nameKey: "contactDisaster", number: "1070",       type: "call" },
     ],
   },
   {
     categoryKey: "cyberCat",
     items: [
-      { name: "Cyber Crime Helpline",        number: "1930",          type: "call" },
-      { name: "Cyber Crime Portal",          number: "https://cybercrime.gov.in", type: "web" },
-      { name: "RBI Banking Fraud",           number: "14440",         type: "call" },
-      { name: "RBI Complaint Portal",        number: "https://sachet.rbi.org.in", type: "web" },
-      { name: "TRAI (Spam Calls — DND)",     number: "1909",          type: "call" },
+      { nameKey: "contactCyberCrime",        number: "1930",          type: "call" },
+      { nameKey: "contactCyberPortal",          number: "https://cybercrime.gov.in", type: "web" },
+      { nameKey: "contactRBIFraud",           number: "14440",         type: "call" },
+      { nameKey: "contactRBIComplaint",        number: "https://sachet.rbi.org.in", type: "web" },
+      { nameKey: "contactTRAI",     number: "1909",          type: "call" },
     ],
   },
   {
     categoryKey: "womenCat",
     items: [
-      { name: "Women Helpline",              number: "181",           type: "call" },
-      { name: "Domestic Violence Helpline",  number: "181",           type: "call" },
-      { name: "National Commission for Women", number: "7827170170",  type: "call" },
-      { name: "Child Helpline",              number: "1098",          type: "call" },
+      { nameKey: "contactWomenHelpline",              number: "181",           type: "call" },
+      { nameKey: "contactDomesticViolence",  number: "181",           type: "call" },
+      { nameKey: "contactNCW", number: "7827170170",  type: "call" },
+      { nameKey: "contactChildHelpline",              number: "1098",          type: "call" },
     ],
   },
   {
     categoryKey: "financeCat",
     items: [
-      { name: "National Consumer Helpline",  number: "1915",          type: "call" },
-      { name: "SEBI Investor Helpline",      number: "1800-22-7575",  type: "call" },
-      { name: "IRDAI Insurance Fraud",       number: "155255",        type: "call" },
-      { name: "PM Daksh Helpline",           number: "1800110396",    type: "call" },
+      { nameKey: "contactConsumerHelpline",  number: "1915",          type: "call" },
+      { nameKey: "contactSEBI",      number: "1800-22-7575",  type: "call" },
+      { nameKey: "contactIRDAI",       number: "155255",        type: "call" },
+      { nameKey: "contactPMDaksh",           number: "1800110396",    type: "call" },
     ],
   },
   {
     categoryKey: "otherGovCat",
     items: [
-      { name: "Senior Citizens Helpline",    number: "14567",         type: "call" },
-      { name: "UIDAI (Aadhaar)",             number: "1947",          type: "call" },
-      { name: "FSSAI Food Safety",           number: "1800112100",    type: "call" },
-      { name: "Tourist Helpline",            number: "1800-11-1363",  type: "call" },
-      { name: "Railway Helpline",            number: "139",           type: "call" },
-      { name: "LPG Leak",                    number: "1906",          type: "call" },
+      { nameKey: "contactSeniorCitizen",    number: "14567",         type: "call" },
+      { nameKey: "contactUIDAI",             number: "1947",          type: "call" },
+      { nameKey: "contactFSSAI",           number: "1800112100",    type: "call" },
+      { nameKey: "contactTourist",            number: "1800-11-1363",  type: "call" },
+      { nameKey: "contactRailway",            number: "139",           type: "call" },
+      { nameKey: "contactLPG",                    number: "1906",          type: "call" },
     ],
   },
 ];
@@ -117,7 +117,7 @@ export function EmergencyContacts() {
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-gray-900 text-sm">{item.name}</p>
+                    <p className="font-semibold text-gray-900 text-sm">{t(item.nameKey)}</p>
                     <p
                       className={`text-sm font-bold mt-0.5 ${
                         item.type === "call" ? "text-green-600" : "text-blue-600"

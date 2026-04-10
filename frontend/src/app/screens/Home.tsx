@@ -35,21 +35,21 @@ export function Home() {
 
       <div className="p-4 flex-1 space-y-5">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-          <button id="tour-emergency" onClick={() => navigate("/emergency-contacts")} className="w-full text-left active:scale-[0.98] transition-transform" aria-label="Emergency Contacts">
+          <button id="tour-emergency" onClick={() => navigate("/emergency-contacts")} className="w-full text-left active:scale-[0.98] transition-transform" aria-label={t("emergencyContactsTitle")}>
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="bg-gradient-to-r from-[#D62828] to-[#9B1515] p-5 flex items-center gap-4">
                 <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center shrink-0">
                   <Phone size={28} className="text-white" strokeWidth={2.5} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-white text-xl font-bold mb-1">Emergency Contacts</h3>
-                  <p className="text-white/80 text-base">Helplines, fraud & cyber crime numbers</p>
+                  <h3 className="text-white text-xl font-bold mb-1">{t("emergencyContactsTitle")}</h3>
+                  <p className="text-white/80 text-base">{t("emergencyCardSub")}</p>
                 </div>
               </div>
               <div className="p-4 flex items-center justify-between">
-                <span className="text-gray-500 text-base font-medium">Tap any number to call instantly</span>
+                <span className="text-gray-500 text-base font-medium">{t("emergencyCardAction")}</span>
                 <div className="flex items-center gap-2 text-[#D62828] font-bold">
-                  <span>View All</span>
+                  <span>{t("viewAll")}</span>
                   <ArrowRight size={20} />
                 </div>
               </div>

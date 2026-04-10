@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { translations, LANGUAGES, type LanguageCode } from "../i18n/translations";
 
@@ -110,7 +110,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       .catch(err => console.error("Failed to load backend progress:", err));
   }, []);
 
-  const speak = (text: string) => {
+  const speak = useCallback((text: string) => {
     if (!("speechSynthesis" in window)) return;
     window.speechSynthesis.cancel();
     const langInfo = LANGUAGES.find((l) => l.code === language);
@@ -118,28 +118,30 @@ export function AppProvider({ children }: { children: ReactNode }) {
     utterance.lang = langInfo?.speechLang ?? "en-IN";
     utterance.rate = 0.85;
     window.speechSynthesis.speak(utterance);
-  };
+  }, [language]);
 
-  const markCompleted = (module: keyof ProgressState) => {
-    setProgress((prev) => ({ ...prev, [module]: true }));
+  const markCompleted = useCallback((module: keyof ProgressState) => {
+    setProgress((prev) => {
+      if (prev[module]) return prev; // Avoid redundant updates
+      return { ...prev, [module]: true };
+    });
+
     // Frontend-only modules: save to localStorage, skip backend
     if (module === "symbolLiteracyCompleted" || module === "orderBlinkitCompleted") {
       localStorage.setItem(module, "true");
-      return;
-    }
-    // Optimistic UI update, then silently sync with backend
-    if (userUuid) {
+    } else if (userUuid) {
+      // Optimistic UI update already happened above, now silently sync with backend
       fetch(`http://127.0.0.1:8000/api/progress/${userUuid}/mark`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ moduleName: module })
       }).catch(err => console.error("Failed to sync progress:", err));
     }
-  };
+  }, [userUuid]);
 
-  const t = (key: string) => {
+  const t = useCallback((key: string) => {
     return i18nT(key) as string;
-  };
+  }, [i18nT]);
 
   return (
     <AppContext.Provider value={{ language, setLanguage, fontSize, setFontSize, speak, progress, markCompleted, t, userUuid }}>

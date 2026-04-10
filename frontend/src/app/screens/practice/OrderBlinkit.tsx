@@ -38,9 +38,6 @@ export function OrderBlinkit() {
     }
   }, [stage, milkAdded, mangoAdded]);
 
-  useEffect(() => {
-    if (stage === "OB_SUCCESS") markCompleted("orderBlinkitCompleted");
-  }, [stage, markCompleted]);
 
   const handleSearchChangeFirst = (query: string) => {
     setSearchQuery(query);
